@@ -27,6 +27,7 @@ Perché abbiamo preso certe scelte e non altre? Ecco i concetti che guidano alcu
 1. [Google Android Style Guide](#google-android-style-guide)
 2. [Naming conventions](#naming-conventions)
 3. [Organizzazione implementazione delle classi](#organizzazione-implementazione-delle-classi)
+4. [Splashscreen](#splashscreen)
 
 ### Google Android Style Guide ###
 
@@ -152,7 +153,11 @@ Per semplificare l'utilizzo dell'organizzazione del codice come descritto consig
 ![def_androidstudio_live_templates](http://cl.ly/image/1G2M2y1f3y0S/animation.gif)
 
 
+### Splashscreen ###
 
+Comaptibilmente con le specifiche del cliente/del progetto, gli splashscreen in Android sono anti-pattern. Solitamente non sono altro che una schermata con un delay per aprire la pagina successiva: la morte dello sviluppo Android. 
+
+Cerchiamo di rendere utili le splashscreen in modo da fare un buon lavoro e venire incontro alla richiesta di avere uno splashscreen come suggerito in questo [articolo di Big Nerd Ranch](https://www.bignerdranch.com/blog/splash-screens-the-right-way/)
 
 
 
