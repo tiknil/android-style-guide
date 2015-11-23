@@ -148,7 +148,7 @@ public class MyWonderfulObject extends ItsParentObject {
 } 
 ```
 
-Per semplificare l'utilizzo dell'organizzazione del codice come descritto consigliamo di utilizzare il `Live template` per Android Studio apposito come descritto nel repo Android-Live Templates: basta digitare def quando si sta per stendere l'implementazione di una nuova classe.
+Per semplificare l'utilizzo dell'organizzazione del codice come descritto consigliamo di utilizzare il `Live template` per Android Studio apposito come descritto nel repo [AndroidStudio Live Templates](https://github.com/tiknil/AndroidStudio-Live-Templates): basta digitare `def` quando si sta per stendere l'implementazione di una nuova classe.
 
 ![def_androidstudio_live_templates](http://cl.ly/image/1G2M2y1f3y0S/animation.gif)
 
