@@ -1,6 +1,4 @@
-# android-style-guide
-
-:exclamation: DRAFT :exclamation:
+# Android Style Guide
 
 Guida di riferimento per i progetti Android in Tiknil. 
 Non vuole essere l'ennesima riproposizione dello stile di stesura dei progetti in questo linguaggio, ma uno strumento utile per il team e i suoi collaboratori. 
