@@ -86,7 +86,7 @@ private static Comobj comobjOfTypeIfWritableFromCollection(ComobjType t, boolean
 
 Infatti in AndroidStudio l'autocompletamento verrà così presentato: 
 
-![]()
+![android-studio-autocompletion-params](https://github.com/tiknil/android-style-guide/blob/master/images/naming_method_conventions_androidstudio_autompletion.png)
 
 #### Risorse ####
 
