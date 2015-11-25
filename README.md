@@ -11,6 +11,7 @@ Sentitevi liberi di dissentire da quanto abbiamo deciso di tenere come stile gui
 
 *  [Android Style Google](https://source.android.com/source/code-style.html)
 *  [Ribot Android Guidelines](https://github.com/ribot/android-guidelines)
+*  [Effective Android](http://orhanobut.github.io/effective-android/)
 
 ### Concetti di base ###
 
@@ -26,8 +27,17 @@ Perché abbiamo preso certe scelte e non altre? Ecco i concetti che guidano alcu
 
 1. [Google Android Style Guide](#google-android-style-guide)
 2. [Naming conventions](#naming-conventions)
+  - [Risorse](#risorse)
+  - [Nomi dei file `layout`](#nomi-dei-file-layout)
+  - [I file `values`](#i-file-values)
 3. [Organizzazione implementazione delle classi](#organizzazione-implementazione-delle-classi)
-4. [Splashscreen](#splashscreen)
+4. [I file XML](#i-file-xml)
+  - [Uso dei tag self-closing](#uso-dei-tag-self-closing)
+  - [ID e nomi degli elementi](#id-e-nomi-degli-elementi)
+  - [Nominare gli ID](#nominare-gli-id)
+  - [Nominare gli ID delle stringhe](#nominare-gli-id-delle-stringhe)
+  - [Ordinamento degli attributi degli elementi XML](#ordinamento-degli-attributi-degli-elementi-xml)
+5. [Splashscreen](#splashscreen)
 
 ### Google Android Style Guide ###
 
@@ -46,8 +56,9 @@ Per quanto riguarda i seguenti argomenti aderiamo completamente alla [Android St
 
 ### Naming conventions ###
 
-1. I campi non-public (`private`, `protected`, etc) non-static e static non-final cominciano con la lettera minuscola e sono _capitalized_
-2. I campi `static` `final` (**costanti**) sono `ALL_CAPS_WITH_UNDERSCORES`.
+1. I nomi delle classi vanno espressi in [UpperCamelCase](https://en.wikipedia.org/wiki/CamelCase)
+2. I campi non-public (`private`, `protected`, etc) non-static e static non-final cominciano con la lettera minuscola in [lowerCamelCase](https://en.wikipedia.org/wiki/CamelCase)
+3. I campi `static` `final` (**costanti**) sono `ALL_CAPS_WITH_UNDERSCORES`.
 
 >**Nota:** non usiamo mettere `m` o `s` prima delle variabili per indicare che sono d'istanza o statiche. Questo è motivato dal fatto che riteniamo utile e più veloce (vedi [Concetti di base](#concetti-di-base)) utilizzare i comandi dell'IDE per la generazione dei `Getter` e `Setter` (in Android Studio con `CMD+N` nel file `.java`). Infatti, nominando una variabile d'istanza avente `m` come iniziale, ad esempio `mVisible`, i relativi metodi accessori verrebbero generati come `ismVisible()` e `setmVisible`: li riteniamo non di chiara lettura.
 
@@ -56,6 +67,28 @@ Considerare gli acronimi _come parole_ e quindi mettere solo la prima lettera ma
 :+1: `XmlHttpRequest`
 
 :-1: `XMLHTTPRequest`
+
+#### Risorse ####
+
+I nomi delle risorse (immagini, font, assets di altri tipi, xml drawable o altro) vanno scritti in **lowercase_underscore**.
+
+#### Nomi dei file `layout` ####
+
+I nomi dei file di `layout` dovrebbero richiaramare il nome del componente Android cui fanno riferimento, se ha senso. Guarda alla tabella seguente per degli esempi che chiariscono il concetto:
+
+| Component        | Class Name             | Layout Name                   |
+| ---------------- | ---------------------- | ----------------------------- |
+| Activity         | `UserProfileActivity`  | `activity_user_profile.xml`   |
+| Fragment         | `SignUpFragment`       | `fragment_sign_up.xml`        |
+| Dialog           | `ChangePasswordDialog` | `dialog_change_password.xml`  |
+| AdapterView item | ---                    | `item_person.xml`             |
+| Partial layout   | ---                    | `partial_stats_bar.xml`       |
+
+Come vedete non è sempre fattibile usare la convenzione espressa. E' comodo quindi considerare di nominare con il prefisso `item_` per gli oggetti che vengono utilizzati negli `Adapter` (per le `ListView`, `GridView`, etc) e dare comunque nomi che si distinuano ad componenti non standard (come espresso nell'ultima riga della colonna soprastante). 
+
+#### I file `values` ####
+
+I file dentro la cartella `values` dovrebbero avere nome che indica il plurale: `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
 ### Organizzazione implementazione delle classi ###
 
@@ -154,12 +187,80 @@ Per semplificare l'utilizzo dell'organizzazione del codice come descritto consig
 
 ![def_androidstudio_live_templates](http://cl.ly/image/1G2M2y1f3y0S/animation.gif)
 
+### I file XML ###
+
+#### Uso dei tag self-closing ####
+
+Quando un elemento XML non ha contenuto, deve usare un self-closing tag
+
+:+1:
+
+```
+<TextView
+    android:id="@+id/text_view_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+```
+
+:-1:
+```
+<!-- Don't do this! -->
+<TextView
+    android:id="@+id/text_view_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+</TextView>
+```
+
+#### ID e nomi degli elementi ####
+
+Gli ID e i nomi degli elementi XML vanno espressi anch'essi in **lowercase_underscore**.
+
+#### Nominare gli ID ####
+
+Gli ID degli elementi XML (ovvero il campo `android:id="@+id/...` in `TextView`, `ImageView`, etc) vanno preferibilmente chiamati in questo modo: 
+
+|  prefisso  |  nome  |  suffisso  | 
+| --- | --- | --- |
+| nome che identifica il layout in cui l'elemento è contenuto | nome che identifica a cosa serve l'elemento | suffisso con il nome che indica il tipo dell'elemento |
+
+Per il suffisso usare le seguenti abbreviazioni: 
+
+| Elemento | Suffisso |
+| -------- | -------- |
+| TextView | _lbl |
+| ImageView | _img | 
+| Button | _btn |
+| EditText | _edittext |
+| LinearLayout | _layout |
+| RelativeLayout | _layout |
+
+Esempi: 
+
+Un `ImageView` all'interno del file di layout dell'activity home che identifica l'icona del profilo dell'utente può essere così chiamata: `homepage_profile_icon_img`
+
+#### Nominare gli ID delle stringhe ####
+ 
+ In modo similare agli ID degli elementi, per le stringhe applichiamo la seguente convenzione: 
+ 
+|  prefisso  |  nome  |  suffisso  | 
+| --- | --- | --- |
+| nome che identifica la schermata o il contesto in cui l'elemento è contenuto | nome che identifica cosa deve dire la stringa | eventuale suffisso per indicare per esempio `_title` e `_message` dello stesso messaggio che si vuole dare in un `Dialog` |
+
+#### Ordinamento degli attributi degli elementi XML ####
+
+Usate la formattazione di Android Studio che equivale a: 
+
+1. ID
+2. Style
+3. Layout width e height
+4. Altri attributi di layout
+5. Tutto il resto
 
 ### Splashscreen ###
 
 Comaptibilmente con le specifiche del cliente/del progetto, gli splashscreen in Android sono anti-pattern. Solitamente non sono altro che una schermata con un delay per aprire la pagina successiva: la morte dello sviluppo Android. 
 
 Cerchiamo di rendere utili le splashscreen in modo da fare un buon lavoro e venire incontro alla richiesta di avere uno splashscreen come suggerito in questo [articolo di Big Nerd Ranch](https://www.bignerdranch.com/blog/splash-screens-the-right-way/)
-
 
 
