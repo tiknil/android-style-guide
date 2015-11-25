@@ -68,6 +68,26 @@ Considerare gli acronimi _come parole_ e quindi mettere solo la prima lettera ma
 
 :-1: `XMLHTTPRequest`
 
+#### Nomi dei metodi ####
+
+Dichiarare i nomi del metodi in modo tale che si capisca a quale operazione servono utilizzando anche nomi dei parametri indicativi. 
+
+:+1:
+
+```
+private static Comobj comobjOf(ComobjType type, boolean writable, List<Comobj> collection)
+```
+
+:-1:
+
+```
+private static Comobj comobjOfTypeIfWritableFromCollection(ComobjType t, boolean w, List<Comobj> c)
+```
+
+Infatti in AndroidStudio l'autocompletamento verrà così presentato: 
+
+![]()
+
 #### Risorse ####
 
 I nomi delle risorse (immagini, font, assets di altri tipi, xml drawable o altro) vanno scritti in **lowercase_underscore**.
