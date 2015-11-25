@@ -46,10 +46,10 @@ Per quanto riguarda i seguenti argomenti aderiamo completamente alla [Android St
 
 ### Naming conventions ###
 
-1. I campi non-public (`private`, `protected`, etc) non-static cominciano per `m`.
-2. I campi statici non-final cominciano con la lettare `s`.
-3. I campi `static` `final` (**costanti**) sono `ALL_CAPS_WITH_UNDERSCORES`.
-4. Tutti gli altri campi cominciano con la lettera minuscola.
+1. I campi non-public (`private`, `protected`, etc) non-static e static non-final cominciano con la lettera minuscola e sono _capitalized_
+2. I campi `static` `final` (**costanti**) sono `ALL_CAPS_WITH_UNDERSCORES`.
+
+>**Nota:** non usiamo mettere `m` o `s` prima delle variabili per indicare che sono d'istanza o statiche. Questo è motivato dal fatto che riteniamo utile e più veloce (vedi [Concetti di base](#concetti-di-base)) utilizzare i comandi dell'IDE per la generazione dei `Getter` e `Setter` (in Android Studio con `CMD+N` nel file `.java`). Infatti, nominando una variabile d'istanza avente `m` come iniziale, ad esempio `mVisible`, i relativi metodi accessori verrebbero generati come `ismVisible()` e `setmVisible`: li riteniamo non di chiara lettura.
 
 Considerare gli acronimi _come parole_ e quindi mettere solo la prima lettera maiuscola: 
 
@@ -61,15 +61,17 @@ Considerare gli acronimi _come parole_ e quindi mettere solo la prima lettera ma
 
 Forse non esiste una soluzione corretta per l'ordinamento delle parti di codice all'interno di una classe, ma utilizzarne una comune migliora la leggibilità del codice. L'ordine raccomandato è quindi: 
 
-1. Constants
-2. Fields
-3. Static public methods
+1. Inner enums 
+2. Constants
+3. Fields
+3. Class (static) methods
 4. Constructors / Lifecycle
 5. Custom accessors (get/set)
 6. Public methods
-7. Private methods
-8. Override methods and callbacks (public or private)
-9. Inner classes or interfaces
+7. Protected, without modifier methods
+8. Private methods
+9. Override methods and callbacks (public or private)
+10. Inner classes or interfaces
 
 Si **possono** utilizzare alcuni strumenti dell'IDE Android Studio che semplificano la navigazione all'interno dei file di codice (tramite `CMD+ALT+.`) come: 
 
@@ -86,7 +88,7 @@ public class MyWonderfulObject extends ItsParentObject {
     private final static String CONSTANTS = "this_constant_value";
     //endregion
    
-    //region Private fields
+    //region Fields
     private String mTitle;
     private TextView mTextViewTitle;
     //endregion
