@@ -277,7 +277,7 @@ Usate la formattazione di Android Studio che equivale a:
 
 ### Splashscreen ###
 
-Comaptibilmente con le specifiche del cliente/del progetto, gli splashscreen in Android sono anti-pattern. Solitamente non sono altro che una schermata con un delay per aprire la pagina successiva: la morte dello sviluppo Android. 
+Compatibilmente con le specifiche del cliente/del progetto, gli splashscreen in Android sono anti-pattern. Solitamente non sono altro che una schermata con un delay per aprire la pagina successiva: la morte dello sviluppo Android. 
 
 Cerchiamo di rendere utili le splashscreen in modo da fare un buon lavoro e venire incontro alla richiesta di avere uno splashscreen come suggerito in questo [articolo di Big Nerd Ranch](https://www.bignerdranch.com/blog/splash-screens-the-right-way/)
 
