@@ -20,7 +20,7 @@ Perché abbiamo preso certe scelte e non altre? Ecco i concetti che guidano alcu
 * Produzione della documentazione in Italiano
 * Somiglianze con altri linguaggi che utilizziamo per i progetti
 * Abitudini nostre (in via di miglioramento)
-* 
+
 ### Sommario ###
 
 1. [Google Android Style Guide](#google-android-style-guide)
@@ -36,6 +36,7 @@ Perché abbiamo preso certe scelte e non altre? Ecco i concetti che guidano alcu
   - [Nominare gli ID delle stringhe](#nominare-gli-id-delle-stringhe)
   - [Ordinamento degli attributi degli elementi XML](#ordinamento-degli-attributi-degli-elementi-xml)
 5. [Splashscreen](#splashscreen)
+6. [Boilerplate](#boilerplate)
 
 ### Google Android Style Guide ###
 
@@ -281,4 +282,10 @@ Compatibilmente con le specifiche del cliente/del progetto, gli splashscreen in 
 
 Cerchiamo di rendere utili le splashscreen in modo da fare un buon lavoro e venire incontro alla richiesta di avere uno splashscreen come suggerito in questo [articolo di Big Nerd Ranch](https://www.bignerdranch.com/blog/splash-screens-the-right-way/)
 
+### Boilerplate ###
 
+Un punto di partenza per la realizzazione di progetti Android è definito nel nostro Boilerplate. Può non essere completo e le librerie vanno aggiornate, ma sicuramente permette di cominciare subito a lavorare. 
+
+[Tiknil Android Boilerplate](https://github.com/tiknil/android-boilerplate)
+
+Leggete il readme relativo per ulteriori dettagli. 
