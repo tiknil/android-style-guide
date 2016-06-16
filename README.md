@@ -37,6 +37,7 @@ Perché abbiamo preso certe scelte e non altre? Ecco i concetti che guidano alcu
   - [Ordinamento degli attributi degli elementi XML](#ordinamento-degli-attributi-degli-elementi-xml)
 5. [Splashscreen](#splashscreen)
 6. [Boilerplate](#boilerplate)
+7. [Performances matters](#performances-matters)
 
 ### Google Android Style Guide ###
 
@@ -289,3 +290,9 @@ Un punto di partenza per la realizzazione di progetti Android è definito nel no
 [Tiknil Android Boilerplate](https://github.com/tiknil/android-boilerplate)
 
 Leggete il readme relativo per ulteriori dettagli. 
+
+### Performances matters ###
+
+Alcuni tips utili per mantenere alte le prestazioni delle nostre app: 
+
+1. `List`. In generale si preferisce usare `ArrayList` soprattutto per strutture dati di poca entità e che non richiedono continue iterazioni, ma ricerche dirette (tramite `.get(index`). Considerare `LinkedList` solo in altri casi. [Documentazione](http://stackoverflow.com/questions/322715/when-to-use-linkedlist-over-arraylist)
