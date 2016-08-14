@@ -293,6 +293,9 @@ Leggete il readme relativo per ulteriori dettagli.
 
 ### Performances matters ###
 
+>> Vale la pena di leggere [questo articolo di Toptap](https://www.toptal.com/android/android-performance-tips-tools) che indica a cosa fare attenzione per migliorare e debuggare le performance delle app Android
+
 Alcuni tips utili per mantenere alte le prestazioni delle nostre app: 
 
 1. `List`. In generale si preferisce usare `ArrayList` soprattutto per strutture dati di poca entità e che non richiedono continue iterazioni, ma ricerche dirette (tramite `.get(index`). Considerare `LinkedList` solo in altri casi. [Documentazione](http://stackoverflow.com/questions/322715/when-to-use-linkedlist-over-arraylist)
+
