@@ -137,6 +137,9 @@ Da utilizzare un po' come i `#pragma mark` in Obj-C nello sviluppo iOS/OSX. _Da 
 
 ```
 public class MyWonderfulObject extends ItsParentObject {
+    //region Inner enums
+    //endregion
+
     //region Constants
     private final static String CONSTANTS = "this_constant_value";
     //endregion
