@@ -296,7 +296,7 @@ Leggete il readme relativo per ulteriori dettagli.
 
 ### Performances matters ###
 
->> Vale la pena di leggere [questo articolo di Toptap](https://www.toptal.com/android/android-performance-tips-tools) che indica a cosa fare attenzione per migliorare e debuggare le performance delle app Android
+>> Vale la pena di leggere [questo articolo di Toptal](https://www.toptal.com/android/android-performance-tips-tools) che indica a cosa fare attenzione per migliorare e debuggare le performance delle app Android
 
 Alcuni tips utili per mantenere alte le prestazioni delle nostre app: 
 
