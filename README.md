@@ -302,6 +302,39 @@ Alcuni tips utili per mantenere alte le prestazioni delle nostre app:
 
 1. `List`. In generale si preferisce usare `ArrayList` soprattutto per strutture dati di poca entità e che non richiedono continue iterazioni, ma ricerche dirette (tramite `.get(index`). Considerare `LinkedList` solo in altri casi. [Documentazione](http://stackoverflow.com/questions/322715/when-to-use-linkedlist-over-arraylist)
 
+## Design pattern
+
+### Il pattern Model-View-ViewModel
+
+I principali attori del pattern MVVM sono:
+- La _View_ he informa il ViewModel sulle azioni dell'utente
+- Il _ViewModel_  - espone flussi di dati rilevanti per la view
+- Il _Model_  - astrae la fonte dei dati. Il ViewModel lavora con il DataModel per ottenere e salvare i dati.
+
+A prima vista, il pattern MVVM sembra molto simile al modello Model-View-Presenter, perché entrambi svolgono un ottimo lavoro nell'astrazione dello stato e del comportamento della vista. Il Presentation Model astrae una View indipendente da una specifica piattaforma di interfaccia utente, mentre il pattern MVVM è stato creato per semplificare la programmazione **event driven** delle interfacce utente.
+
+Se nel pattern MVP il Presenter indica direttamente alla View cosa visualizzare, nel MVVM **il ViewModel mostra i flussi di eventi** a cui le viste possono legarsi. In questo modo, il ViewModel non ha più bisogno di tenere un riferimento alla vista, come il Presenter fa. Ciò significa anche che tutte le interfacce che il pattern MVP richiede sono state eliminate.
+
+Le View comunicano anche al ViewModel le diverse azioni. Pertanto, il pattern MVVM supporta l'associazione dati bidirezionale tra View e ViewModel e vi è una relazione many-to-one tra View e ViewModel. La View ha un riferimento al ViewModel ma **il ViewModel non ha informazioni sulla View**. Il consumatore dovrebbe conoscere il produttore, ma il produttore - il ViewModel - non sa, e non gli importa conoscere il consumatore.
+
+### Model-View-ViewModel @ Tiknil
+
+La parte event driven richiesta da MVVM viene eseguita utilizzando gli `Observable` di RxJava e gli `ObservableT<>` di Android databinding:
+- Un riferimento all'utilizzo gli `Observable` di RxJava con il pattern MVVM è possibile trovarlo a questo link: https://medium.com/upday-devs/android-architecture-patterns-part-3-model-view-viewmodel-e7eeee76b73b
+- Un riferimento sulla configurazione e l'utilizzo del databinding di Android è possibile trovarlo a questo link: https://nullpointer.wtf/android/mvvm-architecture-data-binding-library/
+
+### Inversion of Control e Dependency Injection
+L'*Inversion of Control* (**IoC**) è un *software design pattern* secondo il quale ogni componente dell'applicazione deve ricevere il **controllo** da un componente appartenente ad una **libreria riusabile**.<br>
+L'obiettivo è quello di rendere ogni componente il più indipendente possibile dagli altri in modo che ognuno sia modificabile singolarmente con conseguente maggior riusabilità e manutenibilità.
+
+La *Dependency Injection* (**DI**) è una forma di *IoC* dove l'implementazione del pattern avviene stabilendo le dipendenze tra un componente e l'altro tramite delle *interfacce* (chiamate **interface contracts**).<br>
+A tali interfacce viene associata un'implementazione in fase di istanziazione del componente (nel *costruttore*) oppure in un secondo momento tramite *setter*.<br>
+In ogni caso è generalmente presente un oggetto **container** che si occupa di creare le istanze di ogni *interfaccia*; la configurazione di tale *container* può così influenzare le dipendenze tra i vari componenti.<br>
+L'utilizzo della *DI* è molto utile per la realizzazione di test automatici, infatti modificando il *container* è possibile *mockare* le dipendenze che non si desidera testare.
+
+References:
+- [Semplice video che chiarisce il concetto di DI](https://www.youtube.com/watch?v=IKD2-MAkXyQ)
+
 ## Struttura del progetto con MVVM & Dependency Injection
 Definiamo in questo capitolo le best practices di Tiknil per l'impostazione di un progetto Android in Java chiamato **AwesomeApp**.
 
