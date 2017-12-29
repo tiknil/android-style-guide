@@ -1,7 +1,7 @@
 # Android Style Guide
 
-Guida di riferimento per i progetti Android in Tiknil. 
-Non vuole essere l'ennesima riproposizione dello stile di stesura dei progetti in questo linguaggio, ma uno strumento utile per il team e i suoi collaboratori. 
+Guida di riferimento per i progetti Android in Tiknil.
+Non vuole essere l'ennesima riproposizione dello stile di stesura dei progetti in questo linguaggio, ma uno strumento utile per il team e i suoi collaboratori.
 
 Sentitevi liberi di dissentire da quanto abbiamo deciso di tenere come stile guida! :wink:
 
@@ -13,7 +13,7 @@ Sentitevi liberi di dissentire da quanto abbiamo deciso di tenere come stile gui
 
 ### Concetti di base ###
 
-Perché abbiamo preso certe scelte e non altre? Ecco i concetti che guidano alcune scelte esposte in questa guida (in ordine non per forza di priorità): 
+Perché abbiamo preso certe scelte e non altre? Ecco i concetti che guidano alcune scelte esposte in questa guida (in ordine non per forza di priorità):
 * [Bellezza](https://it.wikipedia.org/wiki/Bellezza) e stile uniforme, anche nel codice
 * Comprensibilità del codice da chiunque
 * Velocità di scrittura del codice
@@ -41,7 +41,7 @@ Perché abbiamo preso certe scelte e non altre? Ecco i concetti che guidano alcu
 
 ### Google Android Style Guide ###
 
-Per quanto riguarda i seguenti argomenti aderiamo completamente alla [Android Style Google](https://source.android.com/source/code-style.html) by Google: 
+Per quanto riguarda i seguenti argomenti aderiamo completamente alla [Android Style Google](https://source.android.com/source/code-style.html) by Google:
 
 1. **Exceptions**
 2. **Javadoc comments**
@@ -62,7 +62,7 @@ Per quanto riguarda i seguenti argomenti aderiamo completamente alla [Android St
 
 >**Nota:** non usiamo mettere `m` o `s` prima delle variabili per indicare che sono d'istanza o statiche. Questo è motivato dal fatto che riteniamo utile e più veloce (vedi [Concetti di base](#concetti-di-base)) utilizzare i comandi dell'IDE per la generazione dei `Getter` e `Setter` (in Android Studio con `CMD+N` nel file `.java`). Infatti, nominando una variabile d'istanza avente `m` come iniziale, ad esempio `mVisible`, i relativi metodi accessori verrebbero generati come `ismVisible()` e `setmVisible`: li riteniamo non di chiara lettura.
 
-Considerare gli acronimi _come parole_ e quindi mettere solo la prima lettera maiuscola: 
+Considerare gli acronimi _come parole_ e quindi mettere solo la prima lettera maiuscola:
 
 :+1: `XmlHttpRequest`
 
@@ -70,7 +70,7 @@ Considerare gli acronimi _come parole_ e quindi mettere solo la prima lettera ma
 
 #### Nomi dei metodi ####
 
-Dichiarare i nomi del metodi in modo tale che si capisca a quale operazione servono utilizzando anche nomi dei parametri indicativi. 
+Dichiarare i nomi del metodi in modo tale che si capisca a quale operazione servono utilizzando anche nomi dei parametri indicativi.
 
 :+1:
 
@@ -84,7 +84,7 @@ private static Comobj comobjOf(ComobjType type, boolean writable, List<Comobj> c
 private static Comobj comobjOfTypeIfWritableFromCollection(ComobjType t, boolean w, List<Comobj> c)
 ```
 
-Infatti in AndroidStudio l'autocompletamento verrà così presentato: 
+Infatti in AndroidStudio l'autocompletamento verrà così presentato:
 
 ![android-studio-autocompletion-params](https://github.com/tiknil/android-style-guide/blob/master/images/naming_method_conventions_androidstudio_autompletion.png)
 
@@ -104,7 +104,7 @@ I nomi dei file di `layout` dovrebbero richiaramare il nome del componente Andro
 | AdapterView item | ---                    | `item_person.xml`             |
 | Partial layout   | ---                    | `partial_stats_bar.xml`       |
 
-Come vedete non è sempre fattibile usare la convenzione espressa. E' comodo quindi considerare di nominare con il prefisso `item_` per gli oggetti che vengono utilizzati negli `Adapter` (per le `ListView`, `GridView`, etc) e dare comunque nomi che si distinuano ad componenti non standard (come espresso nell'ultima riga della colonna soprastante). 
+Come vedete non è sempre fattibile usare la convenzione espressa. E' comodo quindi considerare di nominare con il prefisso `item_` per gli oggetti che vengono utilizzati negli `Adapter` (per le `ListView`, `GridView`, etc) e dare comunque nomi che si distinuano ad componenti non standard (come espresso nell'ultima riga della colonna soprastante).
 
 #### I file `values` ####
 
@@ -112,9 +112,9 @@ I file dentro la cartella `values` dovrebbero avere nome che indica il plurale: 
 
 ### Organizzazione implementazione delle classi ###
 
-Forse non esiste una soluzione corretta per l'ordinamento delle parti di codice all'interno di una classe, ma utilizzarne una comune migliora la leggibilità del codice. L'ordine raccomandato è quindi: 
+Forse non esiste una soluzione corretta per l'ordinamento delle parti di codice all'interno di una classe, ma utilizzarne una comune migliora la leggibilità del codice. L'ordine raccomandato è quindi:
 
-1. Inner enums 
+1. Inner enums
 2. Constants
 3. Fields
 3. Class (static) methods
@@ -126,7 +126,7 @@ Forse non esiste una soluzione corretta per l'ordinamento delle parti di codice 
 9. Override methods and callbacks (public or private)
 10. Inner classes or interfaces
 
-Si **possono** utilizzare alcuni strumenti dell'IDE Android Studio che semplificano la navigazione all'interno dei file di codice (tramite `CMD+ALT+.`) come: 
+Si **possono** utilizzare alcuni strumenti dell'IDE Android Studio che semplificano la navigazione all'interno dei file di codice (tramite `CMD+ALT+.`) come:
 
 ```
 //region 'Region'
@@ -143,41 +143,41 @@ public class MyWonderfulObject extends ItsParentObject {
     //region Constants
     private final static String CONSTANTS = "this_constant_value";
     //endregion
-   
+
     //region Fields
     private String mTitle;
     private TextView mTextViewTitle;
     //endregion
-    
+
     //region Class methods
     public static void aClassStaticMethod(){
         ...
     }
     //endregion
-    
+
     //region Constructors / Lifecycle
     public MyWonderfulObject(){
         ...
     }
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         ...
     }
     //endregion
-    
+
     //region Custom accessors
     public void setTitle(String title) {
         mTitle = title;
     }
     //endregion
-    
+
     //region Public
     public void aPublicMethod(){
         ...
     }
-    //endregion 
-    
+    //endregion
+
     //region Private
     private void setUpView() {
         ...
@@ -185,25 +185,25 @@ public class MyWonderfulObject extends ItsParentObject {
     //endregion
 
     //region Override methods and callbacks
-    
+
     // ItsParentObject
-    
-    @Override 
+
+    @Override
     public void methodThatHaveToBeOverriddenIntoChilds() {
         ...
     }
     //endregion
-    
+
     //region Inner classes or interfaces
     static class AnInnerClass {
 
     }
-    
+
     private class ImplementingInterfaces implements AwesomeInterface{
       ...
     }
     //endregion
-} 
+}
 ```
 
 Per semplificare l'utilizzo dell'organizzazione del codice come descritto consigliamo di utilizzare il `Live template` per Android Studio apposito come descritto nel repo [AndroidStudio Live Templates](https://github.com/tiknil/AndroidStudio-Live-Templates): basta digitare `def` quando si sta per stendere l'implementazione di una nuova classe.
@@ -241,38 +241,38 @@ Gli ID e i nomi degli elementi XML vanno espressi anch'essi in **lowercase_under
 
 #### Nominare gli ID ####
 
-Gli ID degli elementi XML (ovvero il campo `android:id="@+id/...` in `TextView`, `ImageView`, etc) vanno preferibilmente chiamati in questo modo: 
+Gli ID degli elementi XML (ovvero il campo `android:id="@+id/...` in `TextView`, `ImageView`, etc) vanno preferibilmente chiamati in questo modo:
 
-|  prefisso  |  nome  |  suffisso  | 
+|  prefisso  |  nome  |  suffisso  |
 | --- | --- | --- |
 | nome che identifica il layout in cui l'elemento è contenuto | nome che identifica a cosa serve l'elemento | suffisso con il nome che indica il tipo dell'elemento |
 
-Per il suffisso usare le seguenti abbreviazioni: 
+Per il suffisso usare le seguenti abbreviazioni:
 
 | Elemento | Suffisso |
 | -------- | -------- |
 | TextView | _lbl |
-| ImageView | _img | 
+| ImageView | _img |
 | Button | _btn |
 | EditText | _edittext |
 | LinearLayout | _layout |
 | RelativeLayout | _layout |
 
-Esempi: 
+Esempi:
 
 Un `ImageView` all'interno del file di layout dell'activity home che identifica l'icona del profilo dell'utente può essere così chiamata: `homepage_profile_icon_img`
 
 #### Nominare gli ID delle stringhe ####
- 
- In modo similare agli ID degli elementi, per le stringhe applichiamo la seguente convenzione: 
- 
-|  prefisso  |  nome  |  suffisso  | 
+
+ In modo similare agli ID degli elementi, per le stringhe applichiamo la seguente convenzione:
+
+|  prefisso  |  nome  |  suffisso  |
 | --- | --- | --- |
 | nome che identifica la schermata o il contesto in cui l'elemento è contenuto | nome che identifica cosa deve dire la stringa | eventuale suffisso per indicare per esempio `_title` e `_message` dello stesso messaggio che si vuole dare in un `Dialog` |
 
 #### Ordinamento degli attributi degli elementi XML ####
 
-Usate la formattazione di Android Studio che equivale a: 
+Usate la formattazione di Android Studio che equivale a:
 
 1. ID
 2. Style
@@ -282,23 +282,43 @@ Usate la formattazione di Android Studio che equivale a:
 
 ### Splashscreen ###
 
-Compatibilmente con le specifiche del cliente/del progetto, gli splashscreen in Android sono anti-pattern. Solitamente non sono altro che una schermata con un delay per aprire la pagina successiva: la morte dello sviluppo Android. 
+Compatibilmente con le specifiche del cliente/del progetto, gli splashscreen in Android sono anti-pattern. Solitamente non sono altro che una schermata con un delay per aprire la pagina successiva: la morte dello sviluppo Android.
 
 Cerchiamo di rendere utili le splashscreen in modo da fare un buon lavoro e venire incontro alla richiesta di avere uno splashscreen come suggerito in questo [articolo di Big Nerd Ranch](https://www.bignerdranch.com/blog/splash-screens-the-right-way/)
 
 ### Boilerplate ###
 
-Un punto di partenza per la realizzazione di progetti Android è definito nel nostro Boilerplate. Può non essere completo e le librerie vanno aggiornate, ma sicuramente permette di cominciare subito a lavorare. 
+Un punto di partenza per la realizzazione di progetti Android è definito nel nostro Boilerplate. Può non essere completo e le librerie vanno aggiornate, ma sicuramente permette di cominciare subito a lavorare.
 
 [Tiknil Android Boilerplate](https://github.com/tiknil/android-boilerplate)
 
-Leggete il readme relativo per ulteriori dettagli. 
+Leggete il readme relativo per ulteriori dettagli.
 
 ### Performances matters ###
 
 >> Vale la pena di leggere [questo articolo di Toptal](https://www.toptal.com/android/android-performance-tips-tools) che indica a cosa fare attenzione per migliorare e debuggare le performance delle app Android
 
-Alcuni tips utili per mantenere alte le prestazioni delle nostre app: 
+Alcuni tips utili per mantenere alte le prestazioni delle nostre app:
 
 1. `List`. In generale si preferisce usare `ArrayList` soprattutto per strutture dati di poca entità e che non richiedono continue iterazioni, ma ricerche dirette (tramite `.get(index`). Considerare `LinkedList` solo in altri casi. [Documentazione](http://stackoverflow.com/questions/322715/when-to-use-linkedlist-over-arraylist)
 
+## Struttura del progetto con MVVM & Dependency Injection
+Definiamo in questo capitolo le best practices di Tiknil per l'impostazione di un progetto Android in Java chiamato **AwesomeApp**.
+
+La cartella contenente il codice sorgente dell'app avrà la seguente struttura:
+
+```
+|--java
+  |--com.tiknil.awesomeapp
+    |-- di                # Classi per l'implementazione della dependency injection con Dragger2
+    |-- model             # Tutti gli oggetti model
+    |-- services          # Oggetti che forniscono servizi come networking, persistenza dei dati, ecc...
+    |-- utils             # Classi di generico aiuto per tutto l'app
+    |-- view              # Le classi che implementano la ui
+        |-- activity      # Tutte le activity eventualmente inseriti in sottocartelle di sezione
+        |-- fragment      # Tutte i fragment eventualmente inseriti in sottocartelle di sezione
+    |-- viewmodel         # Tutti i viewmodel eventualmente inseriti in sottocartelle di sezione
+|-- assets
+    |-- fonts             # Contiene i file dei fonts
+|-- res                   # Cartella di resources: color, drawable, layout,...
+```
