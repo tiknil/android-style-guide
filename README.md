@@ -1,4 +1,4 @@
-# Android Style Guide
+# Android Style Guide (Kotlin)
 
 Guida di riferimento per i progetti Android in Tiknil.
 Non vuole essere l'ennesima riproposizione dello stile di stesura dei progetti in questo linguaggio, ma uno strumento utile per il team e i suoi collaboratori.
@@ -7,9 +7,9 @@ Sentitevi liberi di dissentire da quanto abbiamo deciso di tenere come stile gui
 
 ### References ###
 
-*  [Android Style Google](https://source.android.com/source/code-style.html)
-*  [Ribot Android Guidelines](https://github.com/ribot/android-guidelines)
-*  [Effective Android](http://orhanobut.github.io/effective-android/)
+*  [Android Style Google](https://developer.android.com/kotlin/style-guide)
+*  [Jetbrains Kotlin Conding Conventions](https://kotlinlang.org/docs/coding-conventions.html)
+*  [Ray Wenderlich Kotlin Style Guide](https://github.com/raywenderlich/kotlin-style-guide)
 
 ### Concetti di base ###
 
@@ -58,9 +58,9 @@ Per quanto riguarda i seguenti argomenti aderiamo completamente alla [Android St
 
 1. I nomi delle classi vanno espressi in [UpperCamelCase](https://en.wikipedia.org/wiki/CamelCase)
 2. I campi non-public (`private`, `protected`, etc) non-static e static non-final cominciano con la lettera minuscola in [lowerCamelCase](https://en.wikipedia.org/wiki/CamelCase)
-3. I campi `static` `final` (**costanti**) sono `ALL_CAPS_WITH_UNDERSCORES`.
+3. I campi `const val` (**costanti**) sono `ALL_CAPS_WITH_UNDERSCORES` ([screaming snake case](https://kotlinlang.org/docs/coding-conventions.html#:~:text=uppercase%20underscore%2Dseparated%20(-,screaming%20snake%20case,-)%20names%3A)).
 
->**Nota:** non usiamo mettere `m` o `s` prima delle variabili per indicare che sono d'istanza o statiche. Questo è motivato dal fatto che riteniamo utile e più veloce (vedi [Concetti di base](#concetti-di-base)) utilizzare i comandi dell'IDE per la generazione dei `Getter` e `Setter` (in Android Studio con `CMD+N` nel file `.java`). Infatti, nominando una variabile d'istanza avente `m` come iniziale, ad esempio `mVisible`, i relativi metodi accessori verrebbero generati come `ismVisible()` e `setmVisible`: li riteniamo non di chiara lettura.
+>**Nota:** non usiamo mettere `m` o `s` prima delle variabili per indicare che sono d'istanza o statiche. 
 
 Considerare gli acronimi _come parole_ e quindi mettere solo la prima lettera maiuscola:
 
@@ -75,18 +75,16 @@ Dichiarare i nomi del metodi in modo tale che si capisca a quale operazione serv
 :+1:
 
 ```
-private static Comobj comobjOf(ComobjType type, boolean writable, List<Comobj> collection)
+private fun comobjOf(type: ComobjType, writable: boolean, collection: List<Comobj>): Comobj
 ```
 
 :-1:
 
 ```
-private static Comobj comobjOfTypeIfWritableFromCollection(ComobjType t, boolean w, List<Comobj> c)
+private fun comobjOfTypeIfWritableFromCollection(t: ComobjType, w: boolean, c: List<Comobj>): Comobj
 ```
 
-Infatti in AndroidStudio l'autocompletamento verrà così presentato:
-
-![android-studio-autocompletion-params](https://github.com/tiknil/android-style-guide/blob/master/images/naming_method_conventions_androidstudio_autompletion.png)
+> Il motivo è la miglior leggibilità e compresione da parte di un collega che deve prendere in mano il codice scritto e pensato da altri
 
 #### Risorse ####
 
@@ -117,7 +115,7 @@ Forse non esiste una soluzione corretta per l'ordinamento delle parti di codice 
 1. Inner enums
 2. Constants
 3. Fields
-3. Class (static) methods
+3. Class (static) methods (`companion object { ... }` in Kotlin)
 4. Constructors / Lifecycle
 5. Custom accessors (get/set)
 6. Public methods
@@ -133,53 +131,53 @@ Si **possono** utilizzare alcuni strumenti dell'IDE Android Studio che semplific
 //endregion
 ```
 
-Da utilizzare un po' come i `#pragma mark` in Obj-C nello sviluppo iOS/OSX. _Da valutare quando sono utili e quando non lo sono._
-
 ```
-public class MyWonderfulObject extends ItsParentObject {
+class MyWonderfulObject: ItsParentObject {
     //region Inner enums
     //endregion
 
     //region Constants
-    private final static String CONSTANTS = "this_constant_value";
+    const val CONSTANT = "this_constant_value";
     //endregion
 
     //region Fields
-    private String mTitle;
-    private TextView mTextViewTitle;
+    var title: String {
+      get() = _title
+      set() {
+        _title = value
+      }
+    }
+    
+    private var _title: String;
     //endregion
 
     //region Class methods
-    public static void aClassStaticMethod(){
+    companion object {
+      fun aClassStaticMethod() {
         ...
+      }
     }
     //endregion
 
     //region Constructors / Lifecycle
-    public MyWonderfulObject(){
+    init {
         ...
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    override fun onCreate(savedInstanceState: Bundle?){
         ...
     }
     //endregion
 
-    //region Custom accessors
-    public void setTitle(String title) {
-        mTitle = title;
-    }
-    //endregion
-
     //region Public
-    public void aPublicMethod(){
+    fun aPublicMethod(){
         ...
     }
     //endregion
 
     //region Private
-    private void setUpView() {
+    private fun setUpView() {
         ...
     }
     //endregion
@@ -189,17 +187,17 @@ public class MyWonderfulObject extends ItsParentObject {
     // ItsParentObject
 
     @Override
-    public void methodThatHaveToBeOverriddenIntoChilds() {
+    override fun methodThatHaveToBeOverriddenIntoChilds() {
         ...
     }
     //endregion
 
     //region Inner classes or interfaces
-    static class AnInnerClass {
+    class AnInnerClass {
 
     }
 
-    private class ImplementingInterfaces implements AwesomeInterface{
+    private class ImplementingInterfaces: AwesomeInterface{
       ...
     }
     //endregion
@@ -298,17 +296,13 @@ Leggete il readme relativo per ulteriori dettagli.
 
 >> Vale la pena di leggere [questo articolo di Toptal](https://www.toptal.com/android/android-performance-tips-tools) che indica a cosa fare attenzione per migliorare e debuggare le performance delle app Android
 
-Alcuni tips utili per mantenere alte le prestazioni delle nostre app:
-
-1. `List`. In generale si preferisce usare `ArrayList` soprattutto per strutture dati di poca entità e che non richiedono continue iterazioni, ma ricerche dirette (tramite `.get(index`). Considerare `LinkedList` solo in altri casi. [Documentazione](http://stackoverflow.com/questions/322715/when-to-use-linkedlist-over-arraylist)
-
 ## Design pattern
 
 ### Il pattern Model-View-ViewModel
 
 I principali attori del pattern MVVM sono:
-- La _View_ he informa il ViewModel sulle azioni dell'utente
-- Il _ViewModel_  - espone flussi di dati rilevanti per la view
+- La _View_ he informa il ViewModel sulle azioni dell'utente e reagisce ai cambi di stato del ViewModel per la visualizzazione delle informazioni
+- Il _ViewModel_  - espone flussi di dati rilevanti per la view e agisce in base agli input dell'utente per modificare i dati/avviare business logic
 - Il _Model_  - astrae la fonte dei dati. Il ViewModel lavora con il DataModel per ottenere e salvare i dati.
 
 A prima vista, il pattern MVVM sembra molto simile al modello Model-View-Presenter, perché entrambi svolgono un ottimo lavoro nell'astrazione dello stato e del comportamento della vista. Il Presentation Model astrae una View indipendente da una specifica piattaforma di interfaccia utente, mentre il pattern MVVM è stato creato per semplificare la programmazione **event driven** delle interfacce utente.
@@ -319,9 +313,9 @@ Le View comunicano anche al ViewModel le diverse azioni. Pertanto, il pattern MV
 
 ### Model-View-ViewModel @ Tiknil
 
-La parte event driven richiesta da MVVM viene eseguita utilizzando gli `Observable` di RxJava e gli `ObservableT<>` di Android databinding:
+La parte event driven richiesta da MVVM viene eseguita utilizzando il functional programming, ovvero gli `Observable` di ReactiveX (Rx)
 - Un riferimento all'utilizzo gli `Observable` di RxJava con il pattern MVVM è possibile trovarlo a questo link: https://medium.com/upday-devs/android-architecture-patterns-part-3-model-view-viewmodel-e7eeee76b73b
-- Un riferimento sulla configurazione e l'utilizzo del databinding di Android è possibile trovarlo a questo link: https://nullpointer.wtf/android/mvvm-architecture-data-binding-library/
+
 
 ### Inversion of Control e Dependency Injection
 L'*Inversion of Control* (**IoC**) è un *software design pattern* secondo il quale ogni componente dell'applicazione deve ricevere il **controllo** da un componente appartenente ad una **libreria riusabile**.<br>
@@ -335,23 +329,30 @@ L'utilizzo della *DI* è molto utile per la realizzazione di test automatici, in
 References:
 - [Semplice video che chiarisce il concetto di DI](https://www.youtube.com/watch?v=IKD2-MAkXyQ)
 
-## Struttura del progetto con MVVM & Dependency Injection
-Definiamo in questo capitolo le best practices di Tiknil per l'impostazione di un progetto Android in Java chiamato **AwesomeApp**.
+### Cartelle di progetto
 
 La cartella contenente il codice sorgente dell'app avrà la seguente struttura:
 
 ```
-|--java
-  |--com.tiknil.awesomeapp
-    |-- di                # Classi per l'implementazione della dependency injection con Dragger2
-    |-- model             # Tutti gli oggetti model
-    |-- services          # Oggetti che forniscono servizi come networking, persistenza dei dati, ecc...
-    |-- utils             # Classi di generico aiuto per tutto l'app
-    |-- view              # Le classi che implementano la ui
-        |-- activity      # Tutte le activity eventualmente inseriti in sottocartelle di sezione
-        |-- fragment      # Tutte i fragment eventualmente inseriti in sottocartelle di sezione
-    |-- viewmodel         # Tutti i viewmodel eventualmente inseriti in sottocartelle di sezione
-|-- assets
-    |-- fonts             # Contiene i file dei fonts
-|-- res                   # Cartella di resources: color, drawable, layout,...
+|-- java
+  |-- com.tiknil.app
+    |-- di                    # Classi per l'implementazione della dependency injection con Dragger2
+    |-- utils                 # Classi di generico aiuto per il modulo app
+    |-- views                 # Le classi che implementano la ui
+        |-- activities        # Implemetazione delle activity eventualmente inseriti in sottocartelle di sezione
+        |-- fragments         # Implementazione dei fragment eventualmente inseriti in sottocartelle di sezione
+    |-- viewmodels            # Tutti i viewmodel eventualmente inseriti in sottocartelle di sezione
+    |-- assets
+      |-- fonts               # Contiene i file dei fonts
+    |-- res                   # Cartella di resources: color, drawable, layout,...
+  |-- com.tiknil.app.core
+    |-- services              # Interfacce per l'implementazione dei servizi
+    |-- views                 # Classi base per l'implementazione delle view Activity e Fragment
+    |-- viewmodels            # Classi base per l'implementazione dei viewModel
+    |-- (models)              # Le classi dei modelli se non si crea un modulo apposta, dipende dal progetto
+  |-- com.tiknil.app.services # Implementazione dei services (providers) come networking, persistenza dei dati,
+  |-- com.tiknil.app.models   # Tutti gli oggetti model
+
 ```
+
+Si veda il progetto boilerplate (kotlin-boilerplate-mvvm)[https://github.com/tiknil/kotlin-boilerplate-mvvm/blob/master/README.md] per maggiori dettagli
