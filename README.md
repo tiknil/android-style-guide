@@ -218,7 +218,7 @@ Quando un elemento XML non ha contenuto, deve usare un self-closing tag
 
 ```
 <TextView
-    android:id="@+id/text_view_profile"
+    android:id="@+id/textViewProfile"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 ```
@@ -227,7 +227,7 @@ Quando un elemento XML non ha contenuto, deve usare un self-closing tag
 ```
 <!-- Don't do this! -->
 <TextView
-    android:id="@+id/text_view_profile"
+    android:id="@+id/textViewProfile"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 </TextView>
@@ -235,7 +235,7 @@ Quando un elemento XML non ha contenuto, deve usare un self-closing tag
 
 #### ID e nomi degli elementi ####
 
-Gli ID e i nomi degli elementi XML vanno espressi anch'essi in **lowercase_underscore**.
+Gli ID e i nomi degli elementi XML vanno espressi anch'essi in **camelCase**.
 
 #### Nominare gli ID ####
 
@@ -249,16 +249,16 @@ Per il suffisso usare le seguenti abbreviazioni:
 
 | Elemento | Suffisso |
 | -------- | -------- |
-| TextView | _lbl |
-| ImageView | _img |
-| Button | _btn |
-| EditText | _edittext |
-| LinearLayout | _layout |
-| RelativeLayout | _layout |
+| TextView | Lbl |
+| ImageView | Img |
+| Button | Btn |
+| EditText | Edittext |
+| LinearLayout | Layout |
+| RelativeLayout | Layout |
 
 Esempi:
 
-Un `ImageView` all'interno del file di layout dell'activity home che identifica l'icona del profilo dell'utente può essere così chiamata: `homepage_profile_icon_img`
+Un `ImageView` all'interno del file di layout dell'activity home che identifica l'icona del profilo dell'utente può essere così chiamata: `homepageProfileIconImg`
 
 #### Nominare gli ID delle stringhe ####
 
